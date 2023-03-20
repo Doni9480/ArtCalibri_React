@@ -1,0 +1,24 @@
+.block-trend-kategori__block-item {
+   max-width: 318px;
+   margin: 25px 5px;
+}
+.block-trend-kategori__photo {
+   margin-bottom: 20px;
+}
+
+.block-trend-kategori__img {
+   width: 100%;
+   height: 100%;
+}
+.block-trend-kategori__block-kategori-name {
+   text-align: center;
+}
+.block-trend-kategori__block-kategori-name-link {
+   font-weight: 600;
+   font-size: 18px;
+}
+@media (max-width: 768px) {
+   .block-trend-kategori__block-item {
+      flex: 0 1 47%;
+   }
+}

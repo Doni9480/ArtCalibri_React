@@ -1,0 +1,22 @@
+.time-work {
+   margin: 0px 4px;
+}
+.time-work__title-text {
+   font-size: 12px;
+   font-weight: 500;
+}
+.time-work__title-text_footer{
+   font-size: 18px;
+   line-height: 23px;
+   font-weight: 500;
+
+}
+.time-work__status-work {
+   font-weight: 600;
+   font-size: 14px;
+}
+.time-work__status-work_footer{
+   font-size: 24px;
+   line-height: 31px;
+   font-weight: 600;
+}

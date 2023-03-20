@@ -1,0 +1,118 @@
+.sort-form{
+   margin: 20px 0px;
+}
+.sort-form__body{
+   display: flex;
+}
+.sort-form__price-input{
+   border: 1px solid #000;
+   border-radius: 7px;
+   font-size: 16px;
+   font-weight: 500;
+   line-height: 21px;
+   color: #ACACAC;
+   padding: 10px;
+   width: 102px;
+   height: 42px;
+   margin-right: 15px;
+}
+.sort-form__price-input:focus{
+   border: 1px solid #C949CA;
+}
+.sort-form__action{
+   position: relative;
+   display: grid;
+   align-items: center;
+   height: 42px;
+}
+.sort-form__action-checkbox{
+   appearance: none;
+   -webkit-appearance: none;
+   display: none;
+   top: 0;
+   left: 0;
+   position: absolute;
+}
+.sort-form__action-label{
+   position: relative;
+   height: 42px;
+   padding-top: 9px;
+   padding-right: 57px;
+}
+.sort-form__action-label::before{
+   content: '';
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 40px;
+   height: 40px;
+   border: 1px solid #000;
+   border-radius: 7px;
+   z-index: 1;
+}
+.sort-form__action-label::after{
+   content: '';
+   display: block;
+   position: absolute;
+   top: 10px;  
+   right: 10px;
+   background: url('./../../img/icon-checked.svg') no-repeat;
+   background-size: 23px 23px;
+   z-index: 2;
+   width: 23px;
+   height: 23px;
+   opacity: 0;
+}
+.sort-form__action-label:hover:before{
+   border: 2px solid #C949CA;
+}
+.sort-form__action-checkbox:checked + .sort-form__action-label::before{
+   border: 1px solid #C949CA;
+}
+.sort-form__action-checkbox:checked + .sort-form__action-label::after{
+   opacity: 1;
+
+}
+.sort-form__sort-by{
+   position: relative;
+   display: flex;
+   align-items: center;
+}
+.sort-form__sort-by span{
+   padding-right: 15px;
+}
+.sort-form__sort-by select{
+   appearance: none;
+   -webkit-appearance: none;
+   outline: none;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 21px;
+   border: 1px solid #000;
+   border-radius: 7px;
+   padding: 10px 22px 10px 10px;
+   font-family: inherit;
+}
+.sort-form__select::after{
+   content: '';
+   display: block;
+   position: absolute;
+   right: 8px;
+   top: 21px;
+   width: 12px;
+   height: 6px;
+   border-style: solid;
+   border-width: 6px 6px 0 6px;
+   border-color: #000 transparent transparent transparent;
+}
+.sort-form__select:checked{
+   border: 1px solid #C949CA;
+}
+.sort-form__action-label,
+.sort-form__sort-by,
+.sort-form__price span{
+   font-weight: 600;
+   font-size: 20px;
+   line-height: 26px;
+   margin-right: 15px;
+}

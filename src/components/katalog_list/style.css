@@ -1,0 +1,10 @@
+.block-trend-kategori__list-kategori {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+@media (max-width: 1024px) {
+   .block-trend-kategori__list-kategori {
+      justify-content: space-evenly;
+   }
+}

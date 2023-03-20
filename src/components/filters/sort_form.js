@@ -19,7 +19,7 @@ export default class SortForm extends Component {
                   <span>Сортировать:</span>
                   <div className='sort-form__select'>
                      <select>
-                        <option value='null' selected  >По умолчанию</option>
+                        <option value='null'>По умолчанию</option>
                         <option value='by name'>По имени</option>
                         <option value="by price min">По убыванию цены</option>
                         <option value="by price max">По возрастанию цены</option>

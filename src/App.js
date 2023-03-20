@@ -1,10 +1,20 @@
 import React from 'react';
 import './App.css';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
 import PageKatolog from './pages/katolog/page_katolog';
 import Main from './pages/main/Main';
 import PageProdukts from './pages/produkts/page_produkts';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+} from 'react-router-dom';
+import Contacts from './pages/contacts/contacts';
+import Delivery from './pages/delivery/delivery';
+import Gallery from './pages/gallery/gallery';
+import Reviews from './pages/reviews_page/reviews';
+import ShoppingCart from './pages/shopping_cart/shopping_cart';
+import Template from './components/template/template';
 
 class App extends React.Component {
   render() {
@@ -61,11 +71,20 @@ class App extends React.Component {
     // }]
     return (
       <div className="App">
-        <Header />
-        {/* <Main/> */}
-        {/* <PageKatolog/> */}
-        <PageProdukts/>
-        <Footer/>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Template/>}>
+              <Route index element={<Main />} />
+              <Route path='/contakts' element={<Contacts />} />
+              <Route path='/delivery' element={<Delivery />} />
+              <Route path='/gallery' element={<Gallery />} />
+              <Route path='/reviews' element={<Reviews />} />
+              <Route path='/shopping_cart' element={<ShoppingCart />} />
+              <Route path='/kategories' element={<PageKatolog />} />
+              <Route path='/kategories/products' element={<PageProdukts />} />
+            </Route>
+          </Routes>
+        </Router>
       </div>
     );
   }

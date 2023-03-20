@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import "./style.css"
 
@@ -26,10 +27,10 @@ export default class Header extends Component {
                         </div>
                         <div className="block-header__group-items">
                            <div className="block-header__btn">
-                              <a href="kategories.html">
+                              <Link to="kategories/">
                                  <img src={elemK} alt="elemK"/>
                                     <span>Каталог</span>
-                              </a>
+                              </Link>
                            </div>
                            <div className="block-header__search-input-block">
                               <img className="block-header__search-img" src={icon_search} alt="icon-search"/>
@@ -38,20 +39,20 @@ export default class Header extends Component {
                            </div>
                            <nav className="nav-bar">
                               <ul className="nav-bar__list">
-                                 <li className="nav-bar__item active"><a href="/" className="nav-bar__link">Акции</a></li>
-                                 <li className="nav-bar__item"><a href="###" className="nav-bar__link">Доставка</a></li>
-                                 <li className="nav-bar__item"><a href="###" className="nav-bar__link">Контакты</a></li>
-                                 <li className="nav-bar__item"><a href="###" className="nav-bar__link">Галерея</a></li>
-                                 <li className="nav-bar__item"><a href="###" className="nav-bar__link">Отзывы</a></li>
+                                 <li className="nav-bar__item active"><Link to="/" className="nav-bar__link">Акции</Link></li>
+                                 <li className="nav-bar__item"><Link to="delivery/" className="nav-bar__link">Доставка</Link></li>
+                                 <li className="nav-bar__item"><Link to="contakts/" className="nav-bar__link">Контакты</Link></li>
+                                 <li className="nav-bar__item"><Link to="gallery/" className="nav-bar__link">Галерея</Link></li>
+                                 <li className="nav-bar__item"><Link to="reviews/" className="nav-bar__link">Отзывы</Link></li>
                               </ul>
                               <div className="nav-bar__burger">
                                  <span></span>
                               </div>
                            </nav>
                            <div className="block-header__shopping">
-                              <a href="###">
+                              <Link to="shopping_cart">
                                  <img className="block-header__icon" src={icon_shopping} alt="icon-shopping"/>
-                              </a>
+                              </Link>
                            </div>
                         </div>
                         <div className="block-header__row">

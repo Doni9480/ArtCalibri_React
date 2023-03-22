@@ -15,6 +15,7 @@ import Gallery from './pages/gallery/gallery';
 import Reviews from './pages/reviews_page/reviews';
 import ShoppingCart from './pages/shopping_cart/shopping_cart';
 import Template from './components/template/template';
+import ProductDetails from './pages/product_details/product_details';
 
 class App extends React.Component {
   render() {
@@ -82,6 +83,7 @@ class App extends React.Component {
               <Route path='/shopping_cart' element={<ShoppingCart />} />
               <Route path='/kategories' element={<PageKatolog />} />
               <Route path='/kategories/products' element={<PageProdukts />} />
+              <Route path='/kategories/products/details' element={<ProductDetails />} />
             </Route>
           </Routes>
         </Router>

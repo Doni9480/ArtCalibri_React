@@ -1,0 +1,118 @@
+.product-details {
+   display: flex;
+   max-width: 100%;
+   gap: 40px;
+
+}
+
+.product-details__item-block:first-child {
+   flex: 0 1 885px;
+   max-width: 885px;
+}
+
+.product-details__item-block:last-child {
+   flex: 0 1 445px;
+}
+.product-details__text-content > div{
+   margin-bottom: 40px;
+
+}
+.product-details__description {
+   font-weight: 600;
+   font-size: 28px;
+   line-height: 36px;
+   min-width: 336px;
+}
+
+.product-details__active-price {
+   font-size: 50px;
+   font-weight: 600;
+   line-height: 65px;
+}
+.product-details__active-price span{
+   font-size: 22px;
+}
+.product-old-price {
+   text-decoration: line-through;
+   font-size: 20px;
+   line-height: 130%;
+   font-size: 20px;
+   color: #8B8B8B;
+}
+.product-action{
+   font-weight: 600;
+   font-size: 20px;
+   line-height: 26px;
+   color: #FF32A1;
+}
+.product-details__price{
+   display: flex;
+   max-width: 330px;
+   justify-content: space-between;
+   align-items: center;
+}
+.product-action__artikul{
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 21px;
+   color: #616161;
+   margin-top: 20px;
+}
+.subtitle-text{
+   font-weight: 600;
+   font-size: 24px;
+   line-height: 31px;
+   margin-bottom: 20px;
+}
+.product-action__form{
+   display: flex;
+   position: relative;
+   flex-wrap: wrap;
+   gap: 10px;
+
+}
+.product-action__radio-btn{
+   position: absolute;
+   display: none;
+}
+.product-action__radio-label{
+   font-weight: 500;
+   font-size: 24px;
+   line-height: 31px;
+   border: 2px solid #000;
+   flex: 0 1 calc(50% - 5px);
+   border-radius: 7px;
+   padding: 12px;
+   text-align: center;
+   opacity: 0.8;
+}
+.product-action__radio-btn:checked + .product-action__radio-label {
+   border: 2px solid #C949CA;
+   opacity: 1;
+}
+.product-action__btn-sopping{
+   flex: 0 0 100%;
+   font-weight: 700;
+   font-size: 28px;
+   line-height: 36px;
+   color: white;
+   padding: 25px 0px;
+   background: #C949CA;
+   border-radius: 7px;
+   margin-top: 35px;
+}
+.product-details__compound-item{
+   display: flex;
+   font-weight: 500;
+   font-size: 20px;
+   line-height: 26px;
+   margin-bottom: 25px;
+}
+.product-item-name{
+   margin-right: 25px;
+}
+.product-details__item-count span{
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 18px;
+}

@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import SliderProduktDetails from '../../components/slider/slider2'
 import './style.css'
 
-import s1 from './../../img/w1.jpg'
-import s2 from './../../img/w2.jpg'
-import s3 from './../../img/w3.jpg'
-import s4 from './../../img/w4.jpg'
 
 export default class ProductDetails extends Component {
    render() {

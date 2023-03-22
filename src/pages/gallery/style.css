@@ -1,0 +1,13 @@
+.gallery-img-list{
+   display: grid;
+   grid-template-columns: repeat(2, auto);
+   grid-gap: 30px 30px;
+}
+.gallery-img-list__item{
+   
+}
+.gallery-img-list__link{
+}
+.gallery-img-list__img{
+   width: 100%;
+}

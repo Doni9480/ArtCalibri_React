@@ -198,7 +198,7 @@ h6 {
    margin: 0px auto;
 }
 .wrapper {
-   overflow: hidden;
+   /* overflow: hidden; */
    max-width: 100%;
    font-size: 16px;
    font-family: 'Montserrat', sans-serif;

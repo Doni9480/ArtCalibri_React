@@ -1,0 +1,127 @@
+.shopping-content{
+   display: flex;
+   gap: 40px;
+   
+}
+.shopping-content__products-list{
+   flex: 1 0 auto;
+   display: flex;
+   flex-direction: column;
+   gap: 55px;
+}
+.shopping-content__block-info{
+   flex: 0 1 430px;
+   position: relative;
+   top: 0;
+   left: 0;
+}
+.shopping-content__block-info > p{
+   width: 50%;
+}
+.shopping-content__block-info-body{
+   max-width: 430px;
+   width: 100%;
+   border: 2px solid #C949CA;
+   border-radius: 16px;
+   height: 572px;
+   position: sticky;
+   top: 40px;
+   float: right;
+}
+.shopping-content__block-info-title{
+   font-weight: 700;
+   font-size: 37px;
+   line-height: 44px;
+   text-align: center;
+   margin: 30px 0px 26px 0px;
+}
+.shopping-content__block-product-list-count{
+   display: flex;
+   height: 50px;
+   background: #E5E5E5;
+   align-items: center;
+   gap: 45px;
+   margin-bottom: 30px;
+}
+.shopping-content__text-title{
+   flex: 0 1 50%;
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 31px;
+   color: #B3B3B3;
+}
+.shopping-content__text-title:first-child{
+   text-align: end;
+}
+.shopping-content__text-title:last-child{
+   text-align: start;
+}
+.shopping-content__text-title span{
+   font-size: 24px;
+   font-weight: 600;
+   margin-right: 15px;
+}
+.shopping-content__block-info-price-item-label{
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 23px;
+   flex: 0 1 50%;
+   text-align: end;
+}
+.shopping-content__block-info-price-item-value{
+   font-weight: 600;
+   font-size: 24px;
+   padding-left: 40px;
+}
+.shopping-content__block-info-price-item-value span{
+   font-size: 16px;
+}
+.shopping-content__block-info-price-items{
+   display: flex; 
+   align-items: center;
+   margin-bottom: 15px;
+}
+.shopping-content__block-info-price-items:last-child{
+   margin: 0;
+}
+.shopping-content__block-info-price{
+   margin-bottom: 30px;
+}
+.shopping-content__block-all-price{
+   color: #C949CA;
+   text-align: center;
+   font-weight: 700;
+   font-size: 48px;
+   line-height: 62px;
+   margin-bottom: 25px;
+}
+.shopping-content__block-all-price span{
+   font-size: 29px;
+   line-height: 38px;
+}
+.shopping-content__input{
+   border: 1px solid #000;
+   border-radius: 7px;
+   padding: 17px;
+   font-size: 16px;
+   font-weight: 500;
+   line-height: 21px;
+   width: 100%;
+   margin-bottom: 20px;
+}
+.shopping-content__btn{
+   font-weight: 700;
+   font-size: 24px;
+   line-height: 31px;
+   padding: 11px 0px;
+   border-radius: 7px;
+   background: #C949CA;
+   color: #fff;
+   width: 100%;
+   margin-bottom: 40px;
+}
+.shopping-content__form-book{
+   max-width: 328px;
+   margin: 0px auto;
+}
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import TitleBlock from '../../components/block_titlle/title_block';
+import axios from 'axios';
 import './style.css'
 
 import s1 from './../../img/w1.jpg'
@@ -10,17 +11,40 @@ import s4 from './../../img/w4.jpg'
 
 
 export default class Gallery extends Component {
+   constructor(props) {
+      super(props)
+      this.state = {
+         list_images: []
+      }
+   }
+
+   componentDidMount() {
+      let data_res;
+      axios.get('http://localhost:8000/api/v1/gallery/')
+         .then((data) => {
+            data_res = data.data;
+            this.setState({
+               list_images: data_res
+            })
+            console.log(data.data)
+         })
+   }
+
    render() {
       return (
          <>
-            <TitleBlock text={'Галерея'} />
+            <TitleBlock text={'Галерея'} isPageTitle={true}/>
             <div className='gallery-img-list'>
-               <div className='gallery-img-list__item'>
-                  <NavLink to='###' className='gallery-img-list__link'>
-                     <img className='gallery-img-list__img' src={s1} alt='' />
-                  </NavLink>
-               </div>
-               <div className='gallery-img-list__item'>
+               {
+                  this.state.list_images.map((data) =>
+                     <div className='gallery-img-list__item' key={data.id}>
+                        <NavLink to='###' className='gallery-img-list__link'>
+                           <img className='gallery-img-list__img' src={data.photo} alt='' />
+                        </NavLink>
+                     </div>
+                  )
+               }
+               {/* <div className='gallery-img-list__item'>
                   <NavLink to='###' className='gallery-img-list__link'>
                      <img className='gallery-img-list__img' src={s2} alt='' />
                   </NavLink>
@@ -34,7 +58,7 @@ export default class Gallery extends Component {
                   <NavLink to='###' className='gallery-img-list__link'>
                      <img className='gallery-img-list__img' src={s4} alt='' />
                   </NavLink>
-               </div>
+               </div> */}
             </div>
          </>
       )

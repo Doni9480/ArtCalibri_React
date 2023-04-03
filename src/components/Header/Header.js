@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import "./style.css"
 
@@ -10,11 +11,30 @@ import icon_shopping from './../../img/icon-shopping_bag.svg'
 
 import WorkTime from '../work_time/work_time'
 import ListMessagers from '../list_mess/list_messagers'
-
-
+import axios from 'axios'
 
 
 export default class Header extends Component {
+   constructor(props){
+      super(props)
+      this.state = {
+         list_cat: []
+      }
+      this.domain = 'http://localhost:8000'
+   }
+   componentDidMount(){
+      axios.get(`${this.domain}/api/v1/category/?limit=5`).then((response) => {
+         this.setState({
+            list_cat: response.data
+         })
+      })
+   }
+   componentDidUpdate(Props,State){
+      if (State.list_cat !== this.state.list_cat){
+         console.log('l')
+         // this.state.list_cat.categoryes.map((data) => console.log('s', data))
+      }
+   }
    render() {
       return (
          <header>
@@ -27,10 +47,10 @@ export default class Header extends Component {
                         </div>
                         <div className="block-header__group-items">
                            <div className="block-header__btn">
-                              <Link to="kategories/">
+                              <NavLink to="kategories/">
                                  <img src={elemK} alt="elemK"/>
                                     <span>Каталог</span>
-                              </Link>
+                              </NavLink>
                            </div>
                            <div className="block-header__search-input-block">
                               <img className="block-header__search-img" src={icon_search} alt="icon-search"/>
@@ -57,11 +77,10 @@ export default class Header extends Component {
                         </div>
                         <div className="block-header__row">
                            <ul className="block-header__type-list">
-                              <li className="block-header__type-item"><a href="###" className="block-header__tipe-link">Латексные шары</a></li>
-                              <li className="block-header__type-item"><a href="###" className="block-header__tipe-link">Фольгированые шары</a></li>
-                              <li className="block-header__type-item"><a href="###" className="block-header__tipe-link">Цифры</a></li>
-                              <li className="block-header__type-item"><a href="###" className="block-header__tipe-link">3D Сферы</a></li>
-                              <li className="block-header__type-item"><a href="###" className="block-header__tipe-link">Хромовые шары</a></li>
+                              {
+                                 this.state.list_cat.categoryes && this.state.list_cat.categoryes.map((data) => 
+                                 <li key={data.id} className="block-header__type-item"><Link to={`kategories/${data.slug}`} className="block-header__tipe-link">{data.name.length > 10 ? <>{data.name.slice(0, 20)}...</> : data.name}</Link></li>)
+                              }
                            </ul>
                            <div className="block-header__info-container">
                               <div className="block-header__tel">+7 861 204 24 46</div>

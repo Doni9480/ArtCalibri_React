@@ -1,7 +1,17 @@
 .block-leaders-of-sells__photo{
    position: relative;
    transition: all 5s ease 0s;
+   max-width: 248px;
+   max-height: 300px;
 
+}
+.block-leaders-of-sells__img{
+   /* widows: 100%; */
+   /* height: 100%; */
+   width: 248px;
+   height: 300px;
+   object-fit: cover;
+   border-radius: 9px;
 }
 .block-leaders-of-sells__btn-to-shopping{
    display: none;
@@ -36,7 +46,9 @@
    line-height: 23px;
    color: #C949CA;
 }
-
+.block-leaders-of-sells__item{
+   width: 248px;
+}
 
 @media (max-width: 768px) {
    .block-leaders-of-sells__item {

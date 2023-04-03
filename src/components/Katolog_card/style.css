@@ -3,12 +3,16 @@
    margin: 25px 5px;
 }
 .block-trend-kategori__photo {
+   width: 318px;
+   height: 366px;
    margin-bottom: 20px;
 }
 
 .block-trend-kategori__img {
    width: 100%;
    height: 100%;
+   object-fit: cover;
+   border-radius: 12px;
 }
 .block-trend-kategori__block-kategori-name {
    text-align: center;

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 import "./style.css"
 
 import sh from './../../img/sh.png'
-
-import lid from './../../img/lid.jpg'
 
 import banner from './../../img/banner-bg.png'
 
@@ -15,6 +13,48 @@ import Produkts from '../../components/produkts/produkts'
 
 
 export default class Main extends Component {
+   constructor(props) {
+      super(props)
+      this.state = {
+         list_katolog: [],
+         list_lider_products: {},
+         list_action_products: {},
+         list_images: []
+      }
+      this.domain = 'http://localhost:8000'
+   }
+   componentDidMount() {
+      let data_res;
+      axios.get(`${this.domain}/api/v1/category/?limit=0`)
+         .then((data) => {
+            data_res = data.data;
+            this.setState({
+               list_katolog: data_res
+            })
+         })
+      axios.get(`${this.domain}/api/v1/products/?limit=5&title=true`)
+         .then((data) => {
+            this.setState({ list_lider_products: data.data });
+         });
+      axios.get(`${this.domain}/api/v1/products/?limit=5&title=true&action=true`)
+         .then((data) => {
+            this.setState({ list_action_products: data.data });
+         });
+      axios.get(`${this.domain}/api/v1/gallery/?limit=10`)
+         .then((data) => {
+            this.setState({ list_images: data.data });
+         })
+   }
+
+   componentDidUpdate(prevProps, prevState){
+      if (prevState.list_images !== this.state.list_images){
+         this.render()
+      }
+      if (prevState.list_katolog !== this.state.list_katolog){
+         this.render()
+      }
+   }
+
    render() {
       return (
          <>
@@ -42,7 +82,7 @@ export default class Main extends Component {
                <div className="block-trend-kategori__container conteiner">
                   <div className="block-trend-kategori__content-block">
                      <TitleBlock text={'Популярные категории'} link={"kategories/"} />
-                     <KatalogList />
+                     <KatalogList domain={this.domain} list_katolog={this.state.list_katolog.categoryes ? this.state.list_katolog.categoryes : []} />
                   </div>
                </div>
             </div>
@@ -50,7 +90,7 @@ export default class Main extends Component {
                <div className="block-leaders-of-sells__container conteiner">
                   <div className="block-leaders-of-sells__content-block">
                      <TitleBlock text={'Лидеры продаж'} link={"###"} />
-                     <Produkts count={4} />
+                     <Produkts domain={this.domain} products_list={this.state.list_lider_products} />
                      <div className="block-leaders-of-sells__banner">
                         <div className="block-leaders-of-sells__block-container">
                            <div className="block-leaders-of-sells__content">
@@ -79,52 +119,7 @@ export default class Main extends Component {
                <div className="block-action__container conteiner">
                   <div className="block-action__content-block">
                      <TitleBlock text={'Акции'} link={"###"} />
-                     <div className="block-action__list-content-block row-flex">
-                        <div className="block-leaders-of-sells__item block-item">
-                           <div className="block-leaders-of-sells__photo"><img src={lid} alt="lider" className="block-leaders-of-sells__img" /></div>
-                           <div className="block-leaders-of-sells__block-price container-price">
-                              <div className="block-leaders-of-sells__active-price active-price">1450р</div>
-                              <div className="block-leaders-of-sells__old-price old-price">1540р</div>
-                              <div className="block-leaders-of-sells__action action-num">-7%</div>
-                           </div>
-                           <div className="block-leaders-of-sells__description description-text">
-                              <p>Композиция шаров на день рождения</p>
-                           </div>
-                        </div>
-                        <div className="block-leaders-of-sells__item block-item">
-                           <div className="block-leaders-of-sells__photo"><img src={lid} alt="lider" className="block-leaders-of-sells__img" /></div>
-                           <div className="block-leaders-of-sells__block-price container-price">
-                              <div className="block-leaders-of-sells__active-price active-price">1450р</div>
-                              <div className="block-leaders-of-sells__old-price old-price">1540р</div>
-                              <div className="block-leaders-of-sells__action action-num">-7%</div>
-                           </div>
-                           <div className="block-leaders-of-sells__description description-text">
-                              <p>Композиция шаров на день рождения</p>
-                           </div>
-                        </div>
-                        <div className="block-leaders-of-sells__item block-item">
-                           <div className="block-leaders-of-sells__photo"><img src={lid} alt="lider" className="block-leaders-of-sells__img" /></div>
-                           <div className="block-leaders-of-sells__block-price container-price">
-                              <div className="block-leaders-of-sells__active-price active-price">1450р</div>
-                              <div className="block-leaders-of-sells__old-price old-price">1540р</div>
-                              <div className="block-leaders-of-sells__action action-num">-7%</div>
-                           </div>
-                           <div className="block-leaders-of-sells__description description-text">
-                              <p>Композиция шаров на день рождения</p>
-                           </div>
-                        </div>
-                        <div className="block-leaders-of-sells__item block-item">
-                           <div className="block-leaders-of-sells__photo"><img src={lid} alt="lider" className="block-leaders-of-sells__img" /></div>
-                           <div className="block-leaders-of-sells__block-price container-price">
-                              <div className="block-leaders-of-sells__active-price active-price">1450р</div>
-                              <div className="block-leaders-of-sells__old-price old-price">1540р</div>
-                              <div className="block-leaders-of-sells__action action-num">-7%</div>
-                           </div>
-                           <div className="block-leaders-of-sells__description description-text">
-                              <p>Композиция шаров на день рождения</p>
-                           </div>
-                        </div>
-                     </div>
+                     <Produkts domain={this.domain} products_list={this.state.list_action_products} />
                   </div>
                </div>
             </div>
@@ -132,7 +127,7 @@ export default class Main extends Component {
                <div className="block-works__container conteiner">
                   <div className="block-works__content-block">
                      <TitleBlock text={'Наши работы'} />
-                     <Slider />
+                     <Slider domain={this.domain} list_images={this.state.list_images ? this.state.list_images.photos : []} />
                   </div>
                </div>
             </div>

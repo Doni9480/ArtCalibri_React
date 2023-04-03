@@ -185,7 +185,7 @@ export default class ShoppingCart extends Component {
    render() {
       return (
          <>
-            <TitleBlock text={'Корзина'} />
+            <TitleBlock text={'Корзина'} isPageTitle={true}/>
             <div className='shopping-content'>
                <div className='shopping-content__products-list'>
                   {

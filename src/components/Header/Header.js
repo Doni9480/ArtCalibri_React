@@ -23,17 +23,11 @@ export default class Header extends Component {
       this.domain = 'http://localhost:8000'
    }
    componentDidMount(){
-      axios.get(`${this.domain}/api/v1/category/?limit=5`).then((response) => {
+      axios.get(`${this.domain}/api/v1/category/?get_photo=false&limit=5`).then((response) => {
          this.setState({
-            list_cat: response.data
+            list_cat: response.data.results
          })
       })
-   }
-   componentDidUpdate(Props,State){
-      if (State.list_cat !== this.state.list_cat){
-         console.log('l')
-         // this.state.list_cat.categoryes.map((data) => console.log('s', data))
-      }
    }
    render() {
       return (
@@ -78,7 +72,7 @@ export default class Header extends Component {
                         <div className="block-header__row">
                            <ul className="block-header__type-list">
                               {
-                                 this.state.list_cat.categoryes && this.state.list_cat.categoryes.map((data) => 
+                                 this.state.list_cat && this.state.list_cat.map((data) => 
                                  <li key={data.id} className="block-header__type-item"><Link to={`kategories/${data.slug}`} className="block-header__tipe-link">{data.name.length > 10 ? <>{data.name.slice(0, 20)}...</> : data.name}</Link></li>)
                               }
                            </ul>

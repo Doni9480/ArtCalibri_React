@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './style.css'
 
 export default function Produkt(props) {
-   // console.log(props.product_price, Date(props.product_price.date_added));
-   let active_price = Math.round(props.product_price[0].price);
-   let old_price = props.product_price[1] ? Math.round(props.product_price[1].price) - active_price  > 0 ? Math.round(props.product_price[1].price) : null : null;
-   let action = old_price ? Math.round(((old_price - active_price) / active_price) * 100) : null;
-   
+   let active_price = Math.round(props.product.prices.price_active);
+   let old_price = props.product.prices.price_old ? Math.round(props.product.prices.price_old) - active_price > 0 ? Math.round(props.product.prices.price_old) : null : null;
+   let action = old_price ? Math.round(((active_price - old_price) / active_price) * 100) : null;
+
    return (
       <div className="block-leaders-of-sells__item block-item">
          <div className="block-leaders-of-sells__photo">
-            <Link to={props.product.slug}><img src={`${props.domain}${props.product_img[0].photo}`} alt="lider" className="block-leaders-of-sells__img" /></Link>
+            <Link to={`/kategories/${props.product.cat_id}/${props.product.slug}`}><img src={`${props.domain}${props.product.photo.photo}`} alt="lider" className="block-leaders-of-sells__img" /></Link>
             <div className='block-leaders-of-sells__btn-to-shopping'>
                <span>Добавить в корзину</span>
             </div>
@@ -23,7 +22,7 @@ export default function Produkt(props) {
             <div className="block-leaders-of-sells__action action-num">{action && <>{action} <span>%</span></>}</div>
          </div>
          <div className="block-leaders-of-sells__description description-text">
-            <Link to={`${props.product.slug}/`}><p>{props.product.description}</p></Link>
+            <Link to={`/kategories/${props.product.cat_id}/${props.product.slug}/`}><p>{props.product.description}</p></Link>
          </div>
       </div>
    )

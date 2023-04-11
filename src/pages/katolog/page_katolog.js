@@ -9,14 +9,16 @@ export default class PageKatolog extends Component {
       this.state = {
          list_katolog: []
       }
+      this.domain = 'http://127.0.0.1:8000'
    }
    componentDidMount() {
       let data_res;
-      axios.get('http://127.0.0.1:8000/api/v1/category/')
+         axios.get(`${this.domain}/api/v1/category/`)
          .then((data) => {
             data_res = data.data;
+            console.log(data_res.results);
             this.setState({
-               list_katolog: data_res
+               list_katolog: data_res.results
             })
          })
       
@@ -30,7 +32,7 @@ export default class PageKatolog extends Component {
                   
                </div>
             </div>
-            <KatalogList list_katolog={this.state.list_katolog} />
+            <KatalogList domain={this.domain} list_katolog={this.state.list_katolog} />
          </>
       )
    }

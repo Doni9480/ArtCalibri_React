@@ -13,6 +13,7 @@
 .shopping-content__img{
    width: 100%;
    height: 100%;
+   object-fit: cover;
    border-radius: 15px;
 }
 .shopping-content__product-img{
@@ -75,6 +76,10 @@
    font-size: 16px;
    line-height: 21px;
    max-width: 252px;
+   color: #000;
+}
+.shopping-content__description a{
+   color: #000;
 }
 .shopping-content__product-code{
    font-size: 14px;

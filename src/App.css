@@ -1,13 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
+
+body {
+   display: flex;
+   flex-direction: column;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   color: #000;
+   background-color: #fff;
+}
+
+body a {
+   color: #000;
+}
 .container{
    max-width: 1430px;
    margin: 5px auto;
 }
+
 .App{
    display: flex;
    flex-direction: column;
    min-width: 100%;
    min-height: 100vh;
 }
-main{
-   flex: 0 1 auto;
+main {
+   flex: 1 1 auto;
 }
+.block-loading{
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.block-loading__item{
+   font-size: 28px;
+   font-weight: 600;
+   margin-inline: auto;
+}
+/* ------------------------------- */
+.sort-form__price-input{
+   border: 1px solid #000;
+   border-radius: 7px;
+   font-size: 15px;
+   font-weight: 500;
+   line-height: 21px;
+   color: #ACACAC;
+   padding: 10px;
+   width: 102px;
+   height: 42px;
+   margin-right: 15px;
+}
+.sort-form__price-input:focus{
+   border: 1px solid #C949CA;
+}
+/* ---------------------------------------------- */

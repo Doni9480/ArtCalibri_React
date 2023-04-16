@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,15 +7,15 @@ import {
 import './App.css';
 
 import Template from './components/template/template';
-import Main from './pages/main/Main';
-import PageKatolog from './pages/katolog/page_katolog';
-import PageProdukts from './pages/produkts/page_produkts';
-import Contacts from './pages/contacts/contacts';
-import Delivery from './pages/delivery/delivery';
-import Gallery from './pages/gallery/gallery';
-import Reviews from './pages/reviews_page/reviews';
-import ShoppingCart from './pages/shopping_cart/shopping_cart';
-import ProductDetails from './pages/product_details/product_details';
+const Main = React.lazy(() => import('./pages/main/Main'));
+const PageKatolog = React.lazy(() => import('./pages/katolog/page_katolog'));
+const PageProdukts = React.lazy(() => import('./pages/produkts/page_produkts'));
+const Contacts = React.lazy(() => import('./pages/contacts/contacts'));
+const Delivery = React.lazy(() => import('./pages/delivery/delivery'));
+const Gallery = React.lazy(() => import('./pages/gallery/gallery'));
+const Reviews = React.lazy(() => import('./pages/reviews_page/reviews'));
+const ShoppingCart = React.lazy(() => import('./pages/shopping_cart/shopping_cart'));
+const ProductDetails = React.lazy(() => import('./pages/product_details/product_details'));
 
 
 class App extends React.Component {
@@ -23,19 +23,21 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <Routes>
-            <Route path='/' element={<Template />}>
-              <Route index element={<Main />} />
-              <Route path='/contakts' element={<Contacts />} />
-              <Route path='/delivery' element={<Delivery />} />
-              <Route path='/gallery' element={<Gallery />} />
-              <Route path='/reviews' element={<Reviews />} />
-              <Route path='/shopping_cart' element={<ShoppingCart />} />
-              <Route path='/kategories' element={<PageKatolog />} />
-              <Route path='/kategories/:products' element={<PageProdukts />} />
-              <Route path='/kategories/:products/:details' element={<ProductDetails />} />
-            </Route>
-          </Routes>
+          <Suspense fallback={<div className='block-loading'><div className='block-loading__item'>Loading ...</div></div>}>
+            <Routes>
+              <Route path='/' element={<Template />}>
+                <Route index element={<Main />} />
+                <Route path='/contakts' element={<Contacts />} />
+                <Route path='/delivery' element={<Delivery />} />
+                <Route path='/gallery' element={<Gallery />} />
+                <Route path='/reviews' element={<Reviews />} />
+                <Route path='/shopping_cart' element={<ShoppingCart />} />
+                <Route path='/kategories' element={<PageKatolog />} />
+                <Route path='/kategories/:products' element={<PageProdukts />} />
+                <Route path='/kategories/:products/:details' element={<ProductDetails />} />
+              </Route>
+            </Routes>
+          </Suspense>
         </Router>
       </div>
     );

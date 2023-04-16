@@ -8,11 +8,30 @@ export default function Produkt(props) {
    let old_price = props.product.prices.price_old ? Math.round(props.product.prices.price_old) - active_price > 0 ? Math.round(props.product.prices.price_old) : null : null;
    let action = old_price ? Math.round(((active_price - old_price) / active_price) * 100) : null;
 
+   const add_to_sopping = (product_slug) => {
+      if (localStorage.getItem('orders')) {
+         let parsData = JSON.parse(localStorage.getItem('orders'));
+         if (!parsData.find((o) => o.product_id === product_slug)) {
+            parsData.push({product_slug: product_slug, count: 1, gas: 'air' });
+            localStorage.setItem('orders', JSON.stringify(parsData))
+         }
+      } else {
+         let data = [
+            {
+               product_slug: product_slug,
+               count: 1,
+               gas: 'air'
+            }
+         ]
+         localStorage.setItem('orders', JSON.stringify(data))
+      }
+   }
+
    return (
       <div className="block-leaders-of-sells__item block-item">
          <div className="block-leaders-of-sells__photo">
             <Link to={`/kategories/${props.product.cat_id}/${props.product.slug}`}><img src={`${props.domain}${props.product.photo.photo}`} alt="lider" className="block-leaders-of-sells__img" /></Link>
-            <div className='block-leaders-of-sells__btn-to-shopping'>
+            <div className='block-leaders-of-sells__btn-to-shopping' onClick={() => add_to_sopping(props.product.slug)}>
                <span>Добавить в корзину</span>
             </div>
          </div>

@@ -7,7 +7,7 @@ export default function TitleBlock(props) {
    props.isPageTitle ? (document.title = props.text) : isMain && (document.title = 'Главная')
    return (
       <div className="title-block">
-         <h2 className="title-block__title title">{props.text}</h2>
+         <h2 className={props.className ? props.className : "title-block__title title"}>{props.text}</h2>
          {props.link && <Link to={props.link} className="title-block__link-all get-all-item"><span>смотреть всё</span></Link>}
       </div>
    )

@@ -1,25 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
 /* @import "../scss/_nullstyle.scss"; */
 /* @import "../scss/_global.scss"; */
 /* @import "../scss/header.scss"; */
 /* @import "../scss/footer.scss"; */
-
-body {
-   display: flex;
-   flex-direction: column;
-   font-family: 'Montserrat', sans-serif;
-   font-size: 16px;
-   color: #000;
-   background-color: #fff;
-}
-
-body a {
-   color: #000;
-}
-
-main {
-   flex: 1 1 auto;
-}
 
 .block-head {
    margin-bottom: 30px;

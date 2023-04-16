@@ -33,8 +33,8 @@ export default class Gallery extends Component {
                {
                   this.state.list_images.map((data) =>
                      <div className='gallery-img-list__item' key={data.id}>
-                        <NavLink to='###' className='gallery-img-list__link'>
-                           <img className='gallery-img-list__img' src={data.photo} alt='' />
+                        <NavLink to={`/kategories/${data.cat_slug}/${data.product}`} className='gallery-img-list__link'>
+                           <img className='gallery-img-list__img' src={data.photo} alt='gallery-ph' />
                         </NavLink>
                      </div>
                   )

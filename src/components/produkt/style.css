@@ -6,34 +6,33 @@
 
 }
 .block-leaders-of-sells__img{
-   /* widows: 100%; */
-   /* height: 100%; */
    width: 248px;
    height: 300px;
    object-fit: cover;
    border-radius: 9px;
 }
 .block-leaders-of-sells__btn-to-shopping{
-   display: none;
+   /* display: none; */
+   display: grid;
+   opacity: 0;
    position: absolute;
    bottom: 20px;
    left: 50%;
    transform: translate(-50%, 0px) rotate(0deg) scale(1) skew(0deg,0deg);
-   width: 280px;
-   height: 72px;
+   width: 220px;
+   height: 65px;
    border: 2px solid #C949CA;
-   border-radius: 21px;
+   border-radius: 15px;
    background: var(--color-200);
-   /* display: grid; */
    align-items: center;
    justify-content: center;
-   transition: all 5s ease 0s;
+   transition: all 0.5s ease 0s;
    cursor: pointer;
 
 }
 .block-leaders-of-sells__photo:hover .block-leaders-of-sells__btn-to-shopping{
-   display: grid;
    transition: all 0.5s ease 0s;
+   opacity: 1;
 }
 .block-leaders-of-sells__photo:active .block-leaders-of-sells__btn-to-shopping{
    background: var(--color-300);

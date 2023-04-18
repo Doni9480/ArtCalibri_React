@@ -11,6 +11,7 @@ export default function SliderWorks(props) {
    const settings = {
       lazyLoad: 'ondemand',
       dots: false,
+      arrows:false,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -30,14 +31,12 @@ export default function SliderWorks(props) {
             breakpoint: 600,
             settings: {
                slidesToShow: 2,
-               mobileFirst: true
             }
          },
          {
             breakpoint: 480,
             settings: {
                slidesToShow: 1,
-               slidesToScroll: 1
             }
          }]
    };

@@ -228,6 +228,11 @@ h6 {
 .p{
    font-size: 24px;
 }
+@media (max-width:425px) {
+   .p{
+      font-size: 16px;
+   }
+}
 .old-price {
    font-weight: 500;
    font-size: 20px;

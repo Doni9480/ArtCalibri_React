@@ -6,12 +6,12 @@ import "./style.css"
 
 import logo from './../../img/logo.png'
 import elemK from './../../img/elemK.svg'
-import icon_search from './../../img/icon-search.svg'
 import icon_shopping from './../../img/icon-shopping_bag.svg'
 
 import WorkTime from '../work_time/work_time'
 import ListMessagers from '../list_mess/list_messagers'
 import axios from 'axios'
+import SearchInput from '../searchInput/searchInput'
 
 
 export default class Header extends Component {
@@ -31,19 +31,20 @@ export default class Header extends Component {
          })
       })
    }
-   componentDidUpdate(prevProps,prevState){
-      if (prevState.menuActive !==  this.state.menuActive){
-         if (this.state.menuActive === true){
+   componentDidUpdate(prevProps, prevState) {
+      if (prevState.menuActive !== this.state.menuActive) {
+         if (this.state.menuActive === true) {
             document.body.style.overflow = 'hidden';
-         }else{
+         } else {
             document.body.style.overflow = 'auto';
          }
-         
+
       }
 
    }
-   menuActive(){
-      this.setState({menuActive: !this.state.menuActive})
+
+   menuActive() {
+      this.setState({ menuActive: !this.state.menuActive })
    }
    render() {
       return (
@@ -52,37 +53,36 @@ export default class Header extends Component {
                <div className="block-header__container conteiner">
                   <div className="block-header__main-column">
                      <div className={this.state.menuActive ? "block-header__row menu-activate" : "block-header__row"}>
-                        <div className="block-header__logo">
-                           <img src={logo} alt="logo" />
-                        </div>
-                        <div className="block-header__group-items">
-                           <div className="block-header__btn">
-                              <NavLink to="kategories/">
-                                 <img src={elemK} alt="elemK" />
-                                 <span>Каталог</span>
-                              </NavLink>
+                        <div className='block-header__row-content-body'>
+                           <div className="block-header__logo">
+                              <img src={logo} alt="logo" />
                            </div>
-                           <div className="block-header__search-input-block">
-                              <img className="block-header__search-img" src={icon_search} alt="icon-search" />
-                              <input className="block-header__search" type="text" placeholder="Поиск" />
+                           <div className="block-header__group-items">
+                              <div className="block-header__btn">
+                                 <NavLink to="kategories/">
+                                    <img src={elemK} alt="elemK" />
+                                    <span>Каталог</span>
+                                 </NavLink>
+                              </div>
+                              <SearchInput />
                            </div>
-                        </div>
-                        <nav className={this.state.menuActive ? "nav-bar menu-activate" : "nav-bar"}>
-                           <ul className="nav-bar__list">
-                              <li className="nav-bar__item active"><Link to="/" className="nav-bar__link">Акции</Link></li>
-                              <li className="nav-bar__item"><Link to="delivery/" className="nav-bar__link">Доставка</Link></li>
-                              <li className="nav-bar__item"><Link to="contakts/" className="nav-bar__link">Контакты</Link></li>
-                              <li className="nav-bar__item"><Link to="gallery/" className="nav-bar__link">Галерея</Link></li>
-                              <li className="nav-bar__item"><Link to="reviews/" className="nav-bar__link">Отзывы</Link></li>
-                           </ul>
-                           <div className="nav-bar__burger" onClick={() => this.menuActive()}>
-                              <span></span>
+                           <nav className={this.state.menuActive ? "nav-bar menu-activate" : "nav-bar"}>
+                              <ul className="nav-bar__list">
+                                 <li className="nav-bar__item active"><Link to="/" className="nav-bar__link">Акции</Link></li>
+                                 <li className="nav-bar__item"><Link to="delivery/" className="nav-bar__link">Доставка</Link></li>
+                                 <li className="nav-bar__item"><Link to="contakts/" className="nav-bar__link">Контакты</Link></li>
+                                 <li className="nav-bar__item"><Link to="gallery/" className="nav-bar__link">Галерея</Link></li>
+                                 <li className="nav-bar__item"><Link to="reviews/" className="nav-bar__link">Отзывы</Link></li>
+                              </ul>
+                              <div className="nav-bar__burger" onClick={() => this.menuActive()}>
+                                 <span></span>
+                              </div>
+                           </nav>
+                           <div className="block-header__shopping">
+                              <Link to="shopping_cart">
+                                 <img className="block-header__icon" src={icon_shopping} alt="icon-shopping" />
+                              </Link>
                            </div>
-                        </nav>
-                        <div className="block-header__shopping">
-                           <Link to="shopping_cart">
-                              <img className="block-header__icon" src={icon_shopping} alt="icon-shopping" />
-                           </Link>
                         </div>
                      </div>
                      <div className="block-header__row">

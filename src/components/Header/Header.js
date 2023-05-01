@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-
-import "./style.css"
-
+import CategoryService from '../../API/CategoryService'
+import WorkTime from '../work_time/work_time'
+import ListMessagers from '../list_mess/list_messagers'
+import SearchInput from '../searchInput/searchInput'
 import logo from './../../img/logo.png'
 import elemK from './../../img/elemK.svg'
 import icon_shopping from './../../img/icon-shopping_bag.svg'
-
-import WorkTime from '../work_time/work_time'
-import ListMessagers from '../list_mess/list_messagers'
-import axios from 'axios'
-import SearchInput from '../searchInput/searchInput'
+import "./style.css"
 
 
 export default class Header extends Component {
@@ -25,26 +22,24 @@ export default class Header extends Component {
       this.menuActive = this.menuActive.bind(this);
    }
    componentDidMount() {
-      axios.get(`${this.domain}/api/v1/category/?get_photo=false&limit=5`).then((response) => {
+      const fetchListCat = async () => {
+         const response = await CategoryService.getCategory(5, false);
          this.setState({
-            list_cat: response.data.results
+            list_cat: await response?.data?.results
          })
-      })
-   }
-   componentDidUpdate(prevProps, prevState) {
-      if (prevState.menuActive !== this.state.menuActive) {
-         if (this.state.menuActive === true) {
-            document.body.style.overflow = 'hidden';
-         } else {
-            document.body.style.overflow = 'auto';
-         }
-
+      };
+      fetchListCat();
       }
-
+   scrollBarBody(stateMenu) {
+      if (stateMenu) {
+         document.body.style.overflow = 'hidden';
+      } else {
+         document.body.style.overflow = 'auto';
+      }
    }
-
    menuActive() {
       this.setState({ menuActive: !this.state.menuActive })
+      this.scrollBarBody(this.state.menuActive);
    }
    render() {
       return (
@@ -68,11 +63,11 @@ export default class Header extends Component {
                            </div>
                            <nav className={this.state.menuActive ? "nav-bar menu-activate" : "nav-bar"}>
                               <ul className="nav-bar__list">
-                                 <li className="nav-bar__item active"><Link to="/" className="nav-bar__link">Акции</Link></li>
-                                 <li className="nav-bar__item"><Link to="delivery/" className="nav-bar__link">Доставка</Link></li>
-                                 <li className="nav-bar__item"><Link to="contakts/" className="nav-bar__link">Контакты</Link></li>
-                                 <li className="nav-bar__item"><Link to="gallery/" className="nav-bar__link">Галерея</Link></li>
-                                 <li className="nav-bar__item"><Link to="reviews/" className="nav-bar__link">Отзывы</Link></li>
+                                 <li className="nav-bar__item"><NavLink to="/" className="nav-bar__link">Акции</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="delivery/" className="nav-bar__link">Доставка</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="contakts/" className="nav-bar__link">Контакты</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="gallery/" className="nav-bar__link">Галерея</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="reviews/" className="nav-bar__link">Отзывы</NavLink></li>
                               </ul>
                               <div className="nav-bar__burger" onClick={() => this.menuActive()}>
                                  <span></span>
@@ -88,8 +83,8 @@ export default class Header extends Component {
                      <div className="block-header__row">
                         <ul className="block-header__type-list">
                            {
-                              this.state.list_cat && this.state.list_cat.map((data) =>
-                                 <li key={data.id} className="block-header__type-item"><Link to={`kategories/${data.slug}`} className="block-header__tipe-link">{data.name.length > 10 ? <>{data.name.slice(0, 20)}...</> : data.name}</Link></li>)
+                              this.state.list_cat?.length && this.state.list_cat.map((data) =>
+                                 <li key={data.id} className="block-header__type-item"><NavLink to={`kategories/${data.slug}`} className="block-header__tipe-link">{data.name.length > 10 ? <>{data.name.slice(0, 20)}...</> : data.name}</NavLink></li>)
                            }
                         </ul>
                         <div className={this.state.menuActive ? "block-header__info-container menu-activate" : "block-header__info-container"}>

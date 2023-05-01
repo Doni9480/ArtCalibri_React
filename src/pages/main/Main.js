@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import ProductService from '../../API/ProductService'
+import CategoryService from '../../API/CategoryService'
+import OrderService from '../../API/OrderService'
+import GalleryService from '../../API/GalleryService'
 import "./style.css"
 
 import sh from './../../img/sh.png'
@@ -11,11 +14,6 @@ import Slider from '../../components/slider/slider'
 import KatalogList from '../../components/katalog_list/katalog_list'
 import TitleBlock from '../../components/block_titlle/title_block'
 import Produkts from '../../components/produkts/produkts'
-// const Slider = React.lazy(() => import('../../components/slider/slider'))
-// const KatalogList = React.lazy(() => import('../../components/katalog_list/katalog_list'))
-// const TitleBlock = React.lazy(() => import('../../components/block_titlle/title_block'))
-// const Produkts = React.lazy(() => import('../../components/produkts/produkts'))
-
 
 export default class Main extends Component {
    constructor(props) {
@@ -29,39 +27,39 @@ export default class Main extends Component {
       this.domain = 'http://localhost:8000'
    }
    componentDidMount() {
-      let data_res;
-      axios.get(`${this.domain}/api/v1/category/`)
-         .then((data) => {
-            data_res = data.data;
-            this.setState({
-               list_katolog: data_res.results
-            })
+      const fetchCategory = async () => {
+         const response = await CategoryService.getCategory();
+         this.setState({
+            list_katolog: response.data.results
          })
-      axios.get(`${this.domain}/api/v1/order/?get_lid_sale=true&limit=5`)
-         .then((data) => {
-            this.setState({ list_lider_products: data.data.results});
-         });
-      axios.get(`${this.domain}/api/v1/products/?get_action=true&limit=5`)
-         .then((data) => {
-            this.setState({ list_action_products: data.data.results });
-         });
-      axios.get(`${this.domain}/api/v1/gallery/?limit=10&get_title_photo=true`)
-         .then((data) => {
-            this.setState({ list_images: data.data.results });
+      }
+      fetchCategory();
+      const fetchLidersScale = async () => {
+         const response = await OrderService.getLidSale();
+         this.setState({
+            list_lider_products: response.data.results
          })
+      }
+      fetchLidersScale();
+      
+      const fetchPromotions = async () => {
+         const response = await ProductService.getPromotions();
+         this.setState({
+            list_action_products: response.data.results
+         })
+      }
+      fetchPromotions();
+      
+      const fetchListImages = async () => {
+         const response = await GalleryService.getPhoto();
+         this.setState({
+            list_images: response.data.results
+         })
+      }
+      fetchListImages();
    }
 
-   componentDidUpdate(prevProps, prevState){
-      if (prevState.list_lider_products !== this.state.list_lider_products){
-         this.render()
-      }
-      if (prevState.list_action_products !== this.state.list_action_products){
-         this.render()
-      }
-      if (prevState.list_images !== this.state.list_images){
-         this.render()
-      }
-   }
+
 
    render() {
       return (
@@ -98,7 +96,7 @@ export default class Main extends Component {
                <div className="block-leaders-of-sells__container conteiner">
                   <div className="block-leaders-of-sells__content-block">
                      <TitleBlock text={'Лидеры продаж'} link={"/kategories/lid_sale"} />
-                        <Produkts domain={this.domain} products_list={this.state.list_lider_products} />
+                     <Produkts domain={this.domain} products_list={this.state.list_lider_products} />
                      <div className="block-leaders-of-sells__banner">
                         <div className="block-leaders-of-sells__block-container">
                            <div className="block-leaders-of-sells__content">
@@ -127,7 +125,7 @@ export default class Main extends Component {
                <div className="block-action__container conteiner">
                   <div className="block-action__content-block">
                      <TitleBlock text={'Акции'} link={"/kategories/actions"} />
-                        <Produkts domain={this.domain} products_list={this.state.list_action_products} />
+                     <Produkts domain={this.domain} products_list={this.state.list_action_products} />
                   </div>
                </div>
             </div>
@@ -135,7 +133,7 @@ export default class Main extends Component {
                <div className="block-works__container conteiner">
                   <div className="block-works__content-block">
                      <TitleBlock text={'Наши работы'} />
-                        <Slider  der list_images={this.state.list_images ? this.state.list_images : []} />
+                     <Slider der list_images={this.state.list_images ? this.state.list_images : []} />
                   </div>
                </div>
             </div>

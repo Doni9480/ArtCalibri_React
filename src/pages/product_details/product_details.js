@@ -1,9 +1,11 @@
-import React, { useEffect, useState, Suspense } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 import SliderProduktDetails from '../../components/slider/slider2'
-import './style.css'
 import TitleBlock from '../../components/block_titlle/title_block'
+import ProductService from '../../API/ProductService'
+import WorkWithLocalStorage from '../../utils/WorkWithLocalStorage'
+import DiscountCalculation from '../../utils/DiscountCalculation'
+import './style.css'
 
 
 export default function ProductDetails(props) {
@@ -12,61 +14,50 @@ export default function ProductDetails(props) {
    const [activePrice, setActivePrice] = useState(0)
    const [oldPrice, setOldPrice] = useState(0)
    const [action, setAction] = useState('')
-   const [typeGas, setTypeGas] = useState('air')
+   const [typeGas, setTypeGas] = useState(null)
    const [hasProdToShopping, setHasProdToShopping] = useState(false)
 
    const domain = 'http://localhost:8000'
 
    useEffect(() => {
-      axios.get(`http://localhost:8000/api/v1/products/${details}/`)
-         .then((res) => {
-            setProduct(res.data);
-            console.log(res.data);
-         })
+      const fetchProductDetails = async () => {
+         const response = await ProductService.getProductDetails(details);
+         setProduct(response.data)
+      }
+      fetchProductDetails();
    }, [details])
 
    useEffect(() => {
       if (product.id) {
-         setActivePrice(Math.round(product.prices.price_active))
-         setOldPrice(product.prices.price_old ? Math.round(product.prices.price_old) - activePrice > 0 ? Math.round(product.prices.price_old) : null : null)
-         setAction(oldPrice ? Math.round(((activePrice - oldPrice) / activePrice) * 100) : null)
-         checkShoppingHasProduct();
+         const [ap, op, di] = DiscountCalculation(product.prices.price_active, product.prices.price_old);
+         setActivePrice(ap);
+         setOldPrice(op);
+         setAction(di);
       }
-   }, [product])
+      const typeGasFromLS = WorkWithLocalStorage.getProduct(product.id);
+      setTypeGas(typeGasFromLS?.gas);
+      console.log(1);
+   }, [product, hasProdToShopping])
 
-   const inputHandler = (event) => {
+   const radioInputHandler = (event) => {
       setTypeGas(event.target.value);
-      const getDataFromLocStor = JSON.parse(localStorage.getItem('orders'));
-      const newData = getDataFromLocStor.map((item) => {
-         if (item.product_slug === product.slug){
-            item.gas = typeGas;
-            return item
-         }else{
-            return item
-         }
-      })
-      localStorage.setItem('orders', JSON.stringify(newData));
+      WorkWithLocalStorage.updateOrder(product.id, 1, event.target.value);
    }
 
    const submitHandler = (event) => {
-      console.log('clock!');
-      const getDataFromLocStor = localStorage?.getItem('orders') ? JSON.parse(localStorage?.getItem('orders')) : [];
-      const checkData = getDataFromLocStor.find((item) => item.product_slug === product.slug);
-      if (!checkData){
-         getDataFromLocStor.push({product_slug: product.slug, count: 1, gas: typeGas})
-         checkShoppingHasProduct();
-      }
-      localStorage.setItem('orders', JSON.stringify(getDataFromLocStor));
+      setTypeGas(event.target.gas.value);
+      WorkWithLocalStorage.saveNewOrder(product.id, 1, event.target.gas.value)
       event.preventDefault();
    }
 
    const checkShoppingHasProduct = () => {
-      const getDataFromLocStor = localStorage?.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
-      const checkData = getDataFromLocStor.find((item) => item.product_slug === product.slug);
-      if (checkData){
+      const checkData = WorkWithLocalStorage.ordersHasProduct(product.id);
+      if (checkData) {
          setHasProdToShopping(true);
       }
    }
+   console.log(2);
+   checkShoppingHasProduct();
 
    return (
       <div className='product-details'>
@@ -101,13 +92,13 @@ export default function ProductDetails(props) {
                   </div>
                   <div className='product-action__radio-input'>
                      <form className='product-action__form' onSubmit={submitHandler}>
-                        <input className='product-action__radio-btn' type='radio' name='gas' value='air' onChange={inputHandler} id='air' defaultChecked/>
+                        <input className='product-action__radio-btn' type='radio' name='gas' value='air' onChange={radioInputHandler} id='air' defaultChecked={typeGas === 'air' ? true : false} />
                         <label className='product-action__radio-label' htmlFor='air'>Воздух</label>
-                        <input className='product-action__radio-btn' type='radio' name='gas' value='helium' onChange={inputHandler} id='helium' />
+                        <input className='product-action__radio-btn' type='radio' name='gas' value='helium' onChange={radioInputHandler} id='helium' defaultChecked={typeGas === 'helium' ? true : false} />
                         <label className='product-action__radio-label' htmlFor='helium'>Гелий</label>
-                        {!hasProdToShopping ? 
-                        <button className='product-action__btn-sopping' type='submit' >В корзину</button> :
-                        <button className='product-action__btn-sopping' type='submit' disabled style={{opacity: 0.5}}>В корзину</button>}
+                        {!hasProdToShopping ?
+                           <button className='product-action__btn-sopping' type='submit' >В корзину</button> :
+                           <button className='product-action__btn-sopping' type='submit' disabled style={{ opacity: 0.5 }}>В корзину</button>}
                      </form>
                   </div>
                </div>

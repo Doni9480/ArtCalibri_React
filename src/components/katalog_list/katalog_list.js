@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import KatalogCard from '../Katolog_card/katolog_card'
-
 import './style.css'
 
 export default class KatalogList extends Component {

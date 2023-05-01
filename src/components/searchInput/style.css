@@ -1,0 +1,111 @@
+.block-header__search-input-block {
+   flex: 0 1 443px;
+   position: relative;
+   height: 50px;
+   margin-left: 5px;
+   z-index: 9;
+}
+
+.block-header__search-img {
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   top: 50%;
+   left: 18px;
+   transform: translate(0px, -50%) rotate(0deg) scale(1) skew(0deg, 0deg);
+}
+
+.block-header__search {
+   width: 100%;
+   min-width: 300px;
+   height: 50px;
+   border: 2px solid #a9a9a9;
+   border-radius: 9px;
+   padding: 10px 10px 10px 38px;
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 17px;
+}
+
+.block-header__search-reesponse-list {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   background: #fff;
+   bottom: 6px;
+   width: 100%;
+   height: auto;
+   max-height: 300px;
+   border-bottom: 2px solid #a9a9a9;
+   border-left: 2px solid #a9a9a9;
+   border-right: 2px solid #a9a9a9;
+   border-radius: 0px 0px 15px 15px;
+   z-index: 100;
+   pointer-events: auto;
+   overflow: auto;
+   transition: all 0.5s ease 0s;
+   visibility: hidden;
+}
+.block-header__search:focus ~ .block-header__search-reesponse-list {
+   padding: 0px 6px 6px 6px;
+   visibility: visible;
+   
+}
+.block-header__search-reesponse-item {
+   padding: 5px;
+   border-top: 1px solid #a9a9a9;
+   font-size: 16px;
+   font-weight: 500;
+   pointer-events:auto;
+}
+.block-header__search-reesponse-item:hover{
+   background: rgb(202, 202, 202);
+}
+.block-header__search-reesponse-item-link{
+   pointer-events: auto;
+}
+@media (max-width: 1200px) {
+   .block-header__search-input-block {
+      flex: 1 1 445px;
+      margin: 0;
+      height: auto;
+   }
+
+   .block-header__search {
+      border: 0;
+      height: 54px;
+      border-radius: 0;
+   }
+
+   .block-header__search-reesponse-list {
+      border-bottom: 1px solid #d3d3d3;
+      border-left: 1px solid #d3d3d3;
+      border-right: 1px solid #d3d3d3;
+   }
+}
+
+@media (max-width: 536px) {
+   .block-header__search-input-block {
+      flex: 1 1 auto;
+   }
+
+   .block-header__search-input-block span {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 60px;
+      transform: translate(0px, -50%) rotate(0deg) scale(1) skew(0deg, 0deg);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+   }
+
+   .block-header__search-img {
+      display: none;
+   }
+
+   .block-header__search {
+      min-width: auto;
+      width: 95%;
+      padding: 10px 0px 10px 14px;
+   }
+}

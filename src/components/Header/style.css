@@ -183,7 +183,7 @@
    background: #787878;
 }
 
-.active a {
+.active {
    color: #fc42ff;
    font-weight: 600;
 }

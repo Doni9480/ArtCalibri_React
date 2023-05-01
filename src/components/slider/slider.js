@@ -1,11 +1,7 @@
 import React from 'react'
-
 import Slider from "react-slick";
-
-import './style.css'
-
 import { Link } from 'react-router-dom';
-
+import './style.css'
 
 export default function SliderWorks(props) {
    const settings = {

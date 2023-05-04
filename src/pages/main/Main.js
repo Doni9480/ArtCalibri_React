@@ -24,7 +24,7 @@ export default class Main extends Component {
          list_action_products: {},
          list_images: []
       }
-      this.domain = 'http://localhost:8000'
+      this.domain = 'https://artcalibridrfbackend-production.up.railway.app'
    }
    componentDidMount() {
       const fetchCategory = async () => {

@@ -14,7 +14,7 @@ export default function ShoppingCart(props) {
    const [promocode, setPromocod] = useState(null);
    const [countProducts, setCountProducts] = useState(0);
    const [allSum, setAllSum] = useState(0);
-   const domain = 'http://localhost:8000'
+   const domain = 'https://artcalibridrfbackend-production.up.railway.app'
 
    useEffect(() => {
       setOrderParams(WorkWithLocalStorage.getAllOrders());

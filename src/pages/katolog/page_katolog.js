@@ -9,7 +9,7 @@ export default class PageKatolog extends Component {
       this.state = {
          list_katolog: []
       }
-      this.domain = 'http://127.0.0.1:8000'
+      this.domain = 'https://artcalibridrfbackend-production.up.railway.app'
    }
    componentDidMount() {
       let data_res;

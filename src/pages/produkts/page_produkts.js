@@ -8,7 +8,7 @@ import Produkts from '../../components/produkts/produkts'
 export default function PageProdukts() {
    const { products, } = useParams();
    let [products_list, setProductsList] = useState([]);
-   const domain = 'http://localhost:8000'
+   const domain = 'https://artcalibridrfbackend-production.up.railway.app'
 
    const get_url = async (param) => {
       let url;

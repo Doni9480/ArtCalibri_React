@@ -17,7 +17,7 @@ export default function ProductDetails(props) {
    const [typeGas, setTypeGas] = useState(null)
    const [hasProdToShopping, setHasProdToShopping] = useState(false)
 
-   const domain = 'http://localhost:8000'
+   const domain = 'https://artcalibridrfbackend-production.up.railway.app'
 
    useEffect(() => {
       const fetchProductDetails = async () => {

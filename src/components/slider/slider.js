@@ -7,7 +7,7 @@ export default function SliderWorks(props) {
    const settings = {
       lazyLoad: 'ondemand',
       dots: false,
-      arrows:false,
+      arrows: false,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -36,19 +36,25 @@ export default function SliderWorks(props) {
             }
          }]
    };
+   console.log(props.list_images)
    return (
-      <Slider className="block-works__list-content-block row-flex slider" {...settings}>
-         {
-            props.list_images && props.list_images.map((img_data) =>
-               <div className="block-works__item block-item" key={img_data.id}>
-                  <div className="block-works__photo">
-                     <Link to={`/kategories/${img_data.cat_slug}/${img_data.product}`} className="block-works__item-img-link">
-                        <img src={`${img_data.photo}`} alt={img_data.product__slug} className="block-works__img" />
-                     </Link>
-                  </div>
-               </div>
-            )
+      <>
+         {props.list_images?.length ?
+            <Slider className="block-works__list-content-block row-flex slider" {...settings}>
+               {
+                  props.list_images.map((img_data) =>
+                     <div className="block-works__item block-item" key={img_data.id}>
+                        <div className="block-works__photo">
+                           <Link to={`/kategories/${img_data.cat_slug}/${img_data.product}`} className="block-works__item-img-link">
+                              <img src={`${img_data.photo}`} alt={img_data.product__slug} className="block-works__img" />
+                           </Link>
+                        </div>
+                     </div>
+                  )
+               }
+            </Slider> :
+            <div className='cap'>Продуктов пока нет!</div>
          }
-      </Slider>
+      </>
    )
 }

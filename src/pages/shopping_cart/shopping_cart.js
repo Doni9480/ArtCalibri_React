@@ -138,7 +138,7 @@ export default function ShoppingCart(props) {
                         </div>
                      </div>
                   </div>
-               </> : <div className='product-none'>Корзина пуст!</div>}
+               </> : <div className='product-none cap'>Корзина пуст!</div>}
             </div>
          </>
       )

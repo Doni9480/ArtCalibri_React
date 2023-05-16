@@ -53,7 +53,7 @@ export default function SliderWorks(props) {
                   )
                }
             </Slider> :
-            <div className='cap'>Продуктов пока нет!</div>
+            <div className='cap'>Работ пока нет!</div>
          }
       </>
    )

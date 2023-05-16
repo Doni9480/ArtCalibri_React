@@ -228,11 +228,6 @@ h6 {
 .p{
    font-size: 24px;
 }
-@media (max-width:425px) {
-   .p{
-      font-size: 16px;
-   }
-}
 .old-price {
    font-weight: 500;
    font-size: 20px;
@@ -258,10 +253,18 @@ h6 {
 .cap{
    width: 100%;
    text-align: center;
-   font-size: 28px;
+   font-size: min(4vw, 24px);
    font-weight: 600;
    opacity: 0.5;
    padding: 15vh 0px;
    margin-bottom: 20px;
    background: rgb(205, 199, 199);
+}
+@media (max-width:425px) {
+   .p{
+      font-size: 16px;
+   }
+   /* .cap{ */
+      /* font-size: 18px; */
+   /* } */
 }

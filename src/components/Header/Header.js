@@ -18,7 +18,7 @@ export default class Header extends Component {
          list_cat: [],
          menuActive: false,
       }
-      this.domain = 'http://localhost:8000'
+      this.domain = 'https://artcalibridrfbackend-production.up.railway.app'
       this.menuActive = this.menuActive.bind(this);
    }
    componentDidMount() {
@@ -32,9 +32,9 @@ export default class Header extends Component {
       }
    scrollBarBody(stateMenu) {
       if (stateMenu) {
-         document.body.style.overflow = 'hidden';
-      } else {
          document.body.style.overflow = 'auto';
+      } else {
+         document.body.style.overflow = 'hidden';
       }
    }
    menuActive() {
@@ -63,11 +63,11 @@ export default class Header extends Component {
                            </div>
                            <nav className={this.state.menuActive ? "nav-bar menu-activate" : "nav-bar"}>
                               <ul className="nav-bar__list">
-                                 <li className="nav-bar__item"><NavLink to="/" className="nav-bar__link">Акции</NavLink></li>
-                                 <li className="nav-bar__item"><NavLink to="delivery/" className="nav-bar__link">Доставка</NavLink></li>
-                                 <li className="nav-bar__item"><NavLink to="contakts/" className="nav-bar__link">Контакты</NavLink></li>
-                                 <li className="nav-bar__item"><NavLink to="gallery/" className="nav-bar__link">Галерея</NavLink></li>
-                                 <li className="nav-bar__item"><NavLink to="reviews/" className="nav-bar__link">Отзывы</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="/" className="nav-bar__link" onClick={() => this.setState({ menuActive: !this.state.menuActive})}>Акции</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="delivery/" className="nav-bar__link" onClick={() => this.setState({ menuActive: !this.state.menuActive})}>Доставка</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="contakts/" className="nav-bar__link" onClick={() => this.setState({ menuActive: !this.state.menuActive})}>Контакты</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="gallery/" className="nav-bar__link" onClick={() => this.setState({ menuActive: !this.state.menuActive})}>Галерея</NavLink></li>
+                                 <li className="nav-bar__item"><NavLink to="reviews/" className="nav-bar__link" onClick={() => this.setState({ menuActive: !this.state.menuActive})}>Отзывы</NavLink></li>
                               </ul>
                               <div className="nav-bar__burger" onClick={() => this.menuActive()}>
                                  <span></span>
